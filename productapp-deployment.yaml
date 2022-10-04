@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productapp-k8
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+
+    matchLabels:
+      app: productapp-k8
+
+  template:
+    metadata:
+      labels:
+        app: productapp-k8
+    spec:
+      containers:
+      - name: productapp-k8
+        image: kpradeep/devops-groovy-products
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9080
